@@ -19,7 +19,7 @@ subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always,issuer:always
 basicConstraints        = critical, CA:true
 keyUsage                = critical, keyCertSign, cRLSign
-authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/raiz.crt
+authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/crt/raiz.crt
 crlDistributionPoints   = URI:http://pki.local/crl/raiz.crl
 
 [ v3_intermediaria ]
@@ -27,7 +27,7 @@ subjectKeyIdentifier    = hash
 authorityKeyIdentifier  = keyid:always,issuer:always
 basicConstraints        = critical, CA:true, pathlen:0 # pathlen=0 na Intermediária
 keyUsage                = critical, keyCertSign, cRLSign
-authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/intermediaria.crt
+authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/crt/intermediaria.crt
 crlDistributionPoints   = URI:http://pki.local/crl/intermediaria.crl
 
 [ ca ]

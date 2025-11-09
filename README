@@ -2,17 +2,15 @@
 
 Este repositório contém a solução completa para a atividade de criação de uma Infraestrutura de Chaves Públicas (ICP) funcional e reprodutível utilizando Docker Compose. 
 
-O objetivo principal é demonstrar a confiança TLS estabelecida em um contêiner cliente que possui apenas a AC Raiz, forçando a reconstrução da cadeia e verificação de CRLs através de endpoints HTTP (AIA/CDP).
 
 ## 🚀 Como Executar o Projeto
 
-Para testar a infraestrutura e reproduzir o resultado, siga os passos abaixo. É necessário ter o Docker e o Docker Compose instalados.
+Para testar a infraestrutura e reproduzir o resultado, siga os passos abaixo. É necessário ter o Docker instalado.
 
 ### 1. Clonar o Repositório
 
 ``` 
 git clone https://github.com/theraissa/infra-icp.git
-cd infra-icp
 ``` 
 
 ### 2. Inicializar os Contêineres
@@ -50,6 +48,4 @@ Conexao HTTPS bem-sucedida com web.local!
 
 ## 🛠️ Entregáveis
 
-    Link do Vídeo Demonstrativo: [INSIRA AQUI O LINK DO SEU VÍDEO NO YOUTUBE]
-
-    Link do Repositório Público: [ESTE REPOSITÓRIO]
+Link do Vídeo Demonstrativo: https://youtu.be/FYECBROsKu4

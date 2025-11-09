@@ -18,6 +18,8 @@ CN                  = AC Intermediaria - PKI Local
 subjectKeyIdentifier    = hash
 basicConstraints        = critical, CA:true, pathlen:0 # **CRUCIAL: pathlen=0**
 keyUsage                = critical, keyCertSign, cRLSign
+authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/crt/intermediaria.crt
+crlDistributionPoints   = URI:http://pki.local/crl/intermediaria.crl
 
 [ v3_servidor ]
 subjectKeyIdentifier    = hash
@@ -26,8 +28,6 @@ basicConstraints        = CA:false
 keyUsage                = digitalSignature, keyEncipherment
 extendedKeyUsage        = serverAuth
 subjectAltName          = DNS:web.local
-authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/intermediaria.crt
-crlDistributionPoints   = URI:http://pki.local/crl/intermediaria.crl
 
 [ ca ]
 default_ca = default_ca

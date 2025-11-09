@@ -16,8 +16,8 @@ openssl ca \
     -days 375 \
     -notext \
     -md sha256 \
-    -in servidor/csr/web.local.csr \
-    -out servidor/crt/web.local.crt \
+    -in ../servidor/csr/web.local.csr \
+    -out ../servidor/crt/web.local.crt \
     -batch
 
 # Criar o Arquivo da Cadeia (Chain)

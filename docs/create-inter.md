@@ -1,12 +1,12 @@
 # Gerar Chave Privada da Intermediária
-openssl genrsa -out intermediate/private/intermediaria.key 2048
+openssl genrsa -out private/intermediaria.key 2048
 
 # Gerar a CSR da Intermediária
 openssl req -new \
     -sha256 \
     -nodes \
-    -key intermediate/private/intermediaria.key \
-    -out intermediate/intermediaria.csr \
+    -key private/intermediaria.key \
+    -out csr/intermediaria.csr \
     -config openssl_intermediaria.cnf
 
 # Assinar a CSR da Intermediária usando a Raiz (rodei dentro da raiz)
@@ -16,7 +16,7 @@ openssl ca \
     -days 730 \
     -notext \
     -md sha256 \
-    -in ../intermediario/intermediaria.csr \
+    -in ../intermediario/csr/intermediaria.csr \
     -out ../intermediario/certs/intermediaria.crt \
     -batch
 
@@ -29,10 +29,3 @@ openssl ca \
     -cert certs/intermediaria.crt \
     -gencrl \
     -out crl/intermediaria.crl
-
-# Resumo dos Artefatos Criados para a AC Intermediária
-#     private/intermediaria.key: Chave privada da InterCA.
-#     intermediaria.csr: Requisição de assinatura (não é mais necessária, mas está aí).
-#     certs/intermediaria.crt: Certificado assinado pela AC Raiz (contém AIA e CDP).
-#     crl/intermediaria.crl: CRL da InterCA.
-#     openssl_inter.cnf: Arquivo de configuração.
