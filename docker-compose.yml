@@ -1,0 +1,43 @@
+
+services:
+
+  pki.local:
+    build: 
+      context: .
+      dockerfile: pki/Dockerfile.pki
+    container_name: pki.local
+    hostname: pki.local
+    ports:
+      - "8080:80"
+    networks:
+      - pki_network
+    restart: always
+
+  web.local:
+    build:
+      context: .
+      dockerfile: servidor/Dockerfile.web
+    container_name: web.local
+    hostname: web.local 
+    ports:
+      - "443:443"
+    networks:
+      - pki_network
+    depends_on:
+      - pki.local
+    restart: always
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile.client
+    container_name: client
+    networks:
+      - pki_network
+    depends_on:
+      - pki.local
+      - web.local
+
+networks:
+  pki_network:
+    driver: bridge

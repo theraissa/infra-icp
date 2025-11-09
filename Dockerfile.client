@@ -1,0 +1,7 @@
+FROM alpine/curl:latest
+
+RUN apk update && apk add ca-certificates
+
+COPY raiz/certs/raiz.crt /usr/local/share/ca-certificates/raiz.crt
+
+CMD ["sleep", "infinity"]

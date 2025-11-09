@@ -1,0 +1,57 @@
+
+[ req ]
+default_bits        = 2048
+default_md          = sha256
+prompt              = no
+encrypt_key         = no
+distinguished_name  = dn_ca_raiz
+x509_extensions     = v3_ca_raiz
+
+[ dn_ca_raiz ]
+C                   = BR
+ST                  = RS
+L                   = Parobe
+O                   = Minha ICP Local
+CN                  = AC Raiz - PKI Local
+
+[ v3_ca_raiz ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always,issuer:always
+basicConstraints        = critical, CA:true
+keyUsage                = critical, keyCertSign, cRLSign
+authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/raiz.crt
+crlDistributionPoints   = URI:http://pki.local/crl/raiz.crl
+
+[ v3_intermediaria ]
+subjectKeyIdentifier    = hash
+authorityKeyIdentifier  = keyid:always,issuer:always
+basicConstraints        = critical, CA:true, pathlen:0 # pathlen=0 na Intermediária
+keyUsage                = critical, keyCertSign, cRLSign
+authorityInfoAccess     = OCSP;URI:http://pki.local/ocsp, caIssuers;URI:http://pki.local/intermediaria.crt
+crlDistributionPoints   = URI:http://pki.local/crl/intermediaria.crl
+
+[ ca ]
+default_ca = default_ca
+
+[ default_ca ]
+dir                     = .                     
+certs                   = $dir/certs            
+new_certs_dir           = $dir/newcerts         
+database                = $dir/database/index.txt        
+serial                  = $dir/database/serial           
+crlnumber               = $dir/database/crlnumber        
+crl                     = $dir/crl/raiz.crl    
+private_key             = $dir/private/raiz.key 
+certificate             = $dir/certs/raiz.crt   
+default_days            = 365                  
+default_crl_days        = 30                    
+default_md              = sha256
+policy                  = policy_anything
+
+[ policy_anything ]
+countryName             = optional
+stateOrProvinceName     = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional

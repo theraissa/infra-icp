@@ -1,0 +1,9 @@
+FROM nginx:alpine
+
+RUN apk update && apk add ca-certificates
+
+COPY servidor/private/web.local.key /etc/ssl/web.local.key
+COPY servidor/web.local.chain.crt /etc/ssl/web.local.chain.crt
+COPY servidor/web_nginx.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 443

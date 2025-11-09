@@ -1,0 +1,22 @@
+
+[ req ]
+default_bits        = 2048
+default_md          = sha256
+prompt              = no
+encrypt_key         = no
+distinguished_name  = dn_servidor
+req_extensions      = v3_servidor
+
+[ dn_servidor ]
+C                   = BR
+ST                  = RS
+L                   = Parobe
+O                   = Minha ICP Local
+CN                  = web.local
+
+[ v3_servidor ]
+subjectKeyIdentifier    = hash
+basicConstraints        = CA:false          
+keyUsage                = digitalSignature, keyEncipherment
+extendedKeyUsage        = serverAuth        
+subjectAltName          = DNS:web.local
