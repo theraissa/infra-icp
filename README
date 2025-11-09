@@ -1,0 +1,55 @@
+## 🌐 Infraestrutura de Chaves Públicas (ICP) Completa com TLS em Docker
+
+Este repositório contém a solução completa para a atividade de criação de uma Infraestrutura de Chaves Públicas (ICP) funcional e reprodutível utilizando Docker Compose. 
+
+O objetivo principal é demonstrar a confiança TLS estabelecida em um contêiner cliente que possui apenas a AC Raiz, forçando a reconstrução da cadeia e verificação de CRLs através de endpoints HTTP (AIA/CDP).
+
+## 🚀 Como Executar o Projeto
+
+Para testar a infraestrutura e reproduzir o resultado, siga os passos abaixo. É necessário ter o Docker e o Docker Compose instalados.
+
+### 1. Clonar o Repositório
+
+``` 
+git clone https://github.com/theraissa/infra-icp.git
+cd infra-icp
+``` 
+
+### 2. Inicializar os Contêineres
+
+O docker-compose.yml construirá e iniciará três serviços na rede interna 
+
+``` 
+pki_network:
+    pki.local (Servidor HTTP da ICP)
+    web.local (Servidor HTTPS com certificado assinado pela Intermediária)
+    client (Contêiner de teste com apenas a AC Raiz confiada)
+``` 
+
+```
+docker compose up 
+``` 
+
+### 3. Executar o Teste de Confiança
+
+Após a inicialização (todos os contêineres devem estar up), execute o comando final a partir da sua máquina host.
+
+O comando curl será executado dentro do contêiner client e usará apenas o certificado da AC Raiz (raiz.crt) como certificado confiável (--cacert).
+
+``` 
+docker exec -it client sh -c "curl --cacert /usr/local/share/ca-certificates/raiz.crt https://web.local"
+``` 
+
+## ✅ Resultado Esperado:
+
+A conexão deve ser bem-sucedida, provando que a cadeia de confiança foi validada corretamente:
+
+``` 
+Conexao HTTPS bem-sucedida com web.local!
+``` 
+
+## 🛠️ Entregáveis
+
+    Link do Vídeo Demonstrativo: [INSIRA AQUI O LINK DO SEU VÍDEO NO YOUTUBE]
+
+    Link do Repositório Público: [ESTE REPOSITÓRIO]
